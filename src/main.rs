@@ -1,13 +1,16 @@
-use database::plugin::PluginConfig;
-use plugins::Plugin;
+use actix_web::{App, HttpServer};
 
 mod database;
+mod http;
 mod plugins;
 
-fn main() {
-    let text_plugin = plugins::TextPlugin::new(String::from("trmnl"));
-    let plugin_config = PluginConfig::Text(text_plugin);
+#[tokio::main]
+async fn main() -> std::io::Result<()> {
+    HttpServer::new(|| App::new().service(http::get_text_plugin))
+        .bind(("127.0.0.1", 8080))?
+        .run()
+        .await
 
     // println!("{}", serde_json::to_string_pretty(&plugin_config).unwrap());
-    println!("{}", plugin_config.device_render().unwrap());
+    // println!("{}", plugin_config.device_render().unwrap());
 }

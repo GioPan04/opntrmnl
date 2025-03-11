@@ -7,5 +7,5 @@ pub trait Plugin {
 
 #[derive(Debug)]
 pub enum PluginError {
-    Render(rinja::Error),
+    Render(askama::Error),
 }

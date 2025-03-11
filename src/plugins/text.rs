@@ -1,4 +1,4 @@
-use rinja::{DynTemplate, Template};
+use askama::Template;
 use serde::{Deserialize, Serialize};
 
 use super::{Plugin, PluginError};
