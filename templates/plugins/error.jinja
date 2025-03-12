@@ -1,0 +1,10 @@
+{% extends "_base/base.jinja" %}
+
+{% block main %}
+<div class="layout">
+    <div class="flex flex--col">
+        <span class="title">Oh oh, an error occured</span>
+        <span class="description clamp--5 pt--6">{{ format!("{:?}", self.error) }}</span>
+    </div>
+</div>
+{% endblock %}

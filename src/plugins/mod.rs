@@ -1,5 +1,7 @@
+mod error;
 mod rss;
 mod text;
+pub use error::ErrorPlugin;
 pub use rss::RssPlugin;
 pub use text::TextPlugin;
 
