@@ -1,0 +1,16 @@
+{% extends "_base/scaffold.jinja" %}
+
+{% block plugin_name %}TextPlugin{% endblock%}
+
+{% block main %}
+<div class="layout">
+    <div class="columns">
+        <div class="column">
+            <div class="markdown">
+                <span class="title">{{ content }}</span>
+                <div class="content content--center">An open-source self-hostable alternative for trmnl plugins</div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

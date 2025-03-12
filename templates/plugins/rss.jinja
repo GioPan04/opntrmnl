@@ -1,0 +1,31 @@
+{% extends "_base/scaffold.jinja" %}
+{% block plugin_name %}RSS Feed{% endblock%}
+{% block title %}{{ channel.title() }}{% endblock %}
+
+{% block main %}
+<div class="layout">
+    <div
+        class="column"
+        data-list-limit="true"
+        data-list-max-columns="2"
+        data-list-max-height="340"
+        data-list-hidden-count="true"
+    >
+        {% for (index, item) in channel.items().iter().enumerate() %}
+
+        <div class="item">
+            <div class="meta">
+                <span class="index">{{ index + 1 }}</span>
+            </div>
+            <div class="content">
+                <span class="title title--small">{{ item.title().unwrap() }}</span>
+                <span class="description">{{ item.author().unwrap_or("") }}</span>
+                <div class="flex gap--small">
+                    <span class="label label--small label--underline">{{ item.pub_date().unwrap_or("") }}</span>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}

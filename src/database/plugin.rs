@@ -1,17 +1,19 @@
 use serde::{Deserialize, Serialize};
 
-use crate::plugins::{Plugin, PluginError, TextPlugin};
+use crate::plugins::{Plugin, PluginError, RssPlugin, TextPlugin};
 
 #[derive(Debug, Serialize, Deserialize)]
 #[serde(tag = "plugin_type", content = "config", rename_all = "snake_case")]
 pub enum PluginConfig {
     Text(TextPlugin),
+    Rss(RssPlugin),
 }
 
 impl Plugin for PluginConfig {
-    fn device_render(&self) -> Result<String, PluginError> {
+    async fn device_render(&self) -> Result<String, PluginError> {
         match self {
-            Self::Text(p) => p.device_render(),
+            Self::Text(p) => p.device_render().await,
+            Self::Rss(p) => p.device_render().await,
         }
     }
 }
